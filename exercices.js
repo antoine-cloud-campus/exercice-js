@@ -146,15 +146,23 @@
 // setInterval(updateTable, 300);
 
 // Exercice 9
-let body = document.querySelector('body');
+// let body = document.querySelector('body');
 
-function meteo(s, t) {
-    return `Nous sommes ${s=='printemps'?'au':'en'} ${s}, et il fait ${t} degré${Math.abs(t)==1?'':'s'}<br>`
+// function meteo(s, t) {
+//     return `Nous sommes ${s=='printemps'?'au':'en'} ${s}, et il fait ${t} degré${Math.abs(t)==1?'':'s'}<br>`
+// }
+
+// body.innerHTML += meteo('été', 30);
+// body.innerHTML += meteo('automne', 15);
+// body.innerHTML += meteo('printemps', 20);
+// body.innerHTML += meteo('hiver', -1);
+// body.innerHTML += meteo('hiver', 1);
+// body.innerHTML += meteo('hiver', 0);
+
+// Exercice 10
+let nom = "dupOnd"
+function toCapitalize(name) {
+    return name[0].toUpperCase() + name.toLowerCase().slice(1)
 }
 
-body.innerHTML += meteo('été', 30);
-body.innerHTML += meteo('automne', 15);
-body.innerHTML += meteo('printemps', 20);
-body.innerHTML += meteo('hiver', -1);
-body.innerHTML += meteo('hiver', 1);
-body.innerHTML += meteo('hiver', 0);
+console.log(toCapitalize(nom))
