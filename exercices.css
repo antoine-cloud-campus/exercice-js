@@ -7,3 +7,31 @@ table {
     padding: 10px;
     color: white;
   }
+
+  #exercice-12 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+  .event-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    width: 250px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.event-card img {
+    width: 100%;
+    height: auto;
+}
+.event-card a {
+    color: #007BFF;
+    text-decoration: none;
+}
+.event-card a:hover {
+    text-decoration: underline;
+}
