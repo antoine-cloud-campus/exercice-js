@@ -120,30 +120,30 @@
 // }
 
 // Exercice 8.2
-// const table = document.getElementById('numberTable');
-// let colors = ['red', 'cyan', 'green', 'yellow', 'lime', '#1e90ff', '#32cd32', '#8a2be2', '#4682b4', '#ff6347'];
+const table = document.getElementById('numberTable');
+let colors = ['red', 'cyan', 'green', 'yellow', 'lime', '#1e90ff', '#32cd32', '#8a2be2', '#4682b4', '#ff6347'];
 
-// function updateTable() {
-//     let columnColors = Array.from(colors, () => colors[Math.floor(Math.random() * colors.length)]);
+function updateTable() {
+    let columnColors = Array.from(colors, () => colors[Math.floor(Math.random() * colors.length)]);
 
-//     table.innerHTML = '';
-//     for (let i = 0; i < 10; i++) {
-//         const row = document.createElement('tr');
-//         for (let j = 0; j < 10; j++) {
-//             const cell = document.createElement('td');
-//             let number = i * 10 + j;
+    table.innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < 10; j++) {
+            const cell = document.createElement('td');
+            let number = i * 10 + j;
 
-//             cell.textContent = number;
-//             cell.style.backgroundColor = columnColors[j];
+            cell.textContent = number;
+            cell.style.backgroundColor = columnColors[j];
 
 
-//             row.appendChild(cell);
-//         }
-//         table.appendChild(row);
-//     }
-// }
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+}
 
-// setInterval(updateTable, 300);
+setInterval(updateTable, 300);
 
 // Exercice 9
 // let body = document.querySelector('body');
@@ -160,9 +160,9 @@
 // body.innerHTML += meteo('hiver', 0);
 
 // Exercice 10
-let nom = "dupOnd"
-function toCapitalize(name) {
-    return name[0].toUpperCase() + name.toLowerCase().slice(1)
-}
+// let nom = "dupOnd"
+// function toCapitalize(name) {
+//     return name[0].toUpperCase() + name.toLowerCase().slice(1)
+// }
 
-console.log(toCapitalize(nom))
+// console.log(toCapitalize(nom))
