@@ -94,7 +94,7 @@ function afficherCategories() {
     const categoriesList = document.getElementById("categories-list");
     // Créer un tableau contenant toutes les catégories de chaque produits (Unique)
     const categories = [...new Set(produits.map(p => p.categorie))];
-    categoriesList.innerHTML = '<li><a href="#" onclick="filtrerParCategorie("")">Voir tous</a></li>';
+    categoriesList.innerHTML = '<li><a href="#" onclick="filtrerParCategorie()">Voir tous</a></li>';
     categories.forEach(categorie => {
         categoriesList.innerHTML += `<li><a href="#" onclick="filtrerParCategorie('${categorie}')">${categorie}</a></li>`;
     });
