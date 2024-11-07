@@ -1,54 +1,38 @@
 body {
+    font-family: Arial, sans-serif;
+    background-color: #92a8bd;
+    color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #4a4a4d;
-    color: rgb(33, 255, 51);
 }
 
-#text-container {
-    position: relative;
-    width: fit-content;
-    margin: 24px auto;
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
 }
 
-.timer {
-    font-size: 2rem;
-    margin-top: 20px;
-}
-
-#text {
-    white-space: nowrap;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -200%);
-    display: none;
-    font-size: 2rem;
-    font-weight: bold;
+.sound-btn {
+    background-color: #8e1e1e;
+    border: none;
     padding: 20px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    animation: fadeIn 2s ease-in-out forwards;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -400%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(-50%, -200%);
-    }
+.sound-btn:hover {
+    background-color: #2980b9;
 }
 
-.gif-container,
-.gif-end {
-    width: 500px;
-    display: none;
+.sound-btn:active {
+    background-color: #1abc9c;
 }
