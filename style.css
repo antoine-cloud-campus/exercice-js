@@ -13,10 +13,3 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
 }
-
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 1;
-    transition: opacity 1s, top 1s ease-in-out;
-}
