@@ -1,4 +1,4 @@
-let text = document.getElementById('text')
+const text = document.getElementById('text')
 
 function startTimer() {
     let seconds = parseInt(prompt('Donnez un nombre de seconde pour le timer'))
@@ -38,7 +38,11 @@ function displayTime(seconds) {
     const secs = seconds % 60;
 
     document.getElementById('timerDisplay').textContent =
-        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        `${setPadStart(hours)}:${setPadStart(minutes)}:${setPadStart(secs)}`;
+}
+
+function setPadStart(time) {
+    return String(time).padStart(2, '0')
 }
 
 startTimer();
