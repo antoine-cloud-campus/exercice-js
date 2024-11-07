@@ -11,6 +11,13 @@ function startTimer() {
     let countdownInterval = setInterval(() => {
         seconds--;
         displayTime(seconds);
+        if (seconds == 551) {
+            const gif = document.querySelector('.gif-container');
+            gif.style.display = 'block';
+            setTimeout(() => {
+                gif.style.display = 'none';
+            }, 2000);
+        }
         if (seconds <= 0) {
             clearInterval(countdownInterval);
             text.style.display = 'block';

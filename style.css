@@ -6,7 +6,7 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #4a4a4d;
-    color: rgb(0, 255, 21);
+    color: rgb(33, 255, 51);
 }
 
 .timer {
@@ -15,56 +15,31 @@ body {
 }
 
 #text {
+    position: absolute;
+    top: 80px;
     display: none;
     font-size: 2rem;
     font-weight: bold;
-    animation: crazyAnimation 5s infinite;
     padding: 20px;
     border: 2px solid #fff;
     border-radius: 10px;
     text-align: center;
+    animation: fadeIn 2s ease-in-out forwards;
 }
 
-@keyframes crazyAnimation {
+@keyframes fadeIn {
     0% {
-        transform: scale(1) rotate(0deg) translateX(0);
-        color: #ff0000;
-        background-color: #fff;
-        border-color: #ff0000;
-    }
-
-    20% {
-        transform: scale(1.2) rotate(45deg) translateX(-100px);
-        color: #ff00ff;
-        background-color: #000;
-        border-color: #00ff00;
-    }
-
-    40% {
-        transform: scale(1.5) rotate(90deg) translateX(100px);
-        color: #00ff00;
-        background-color: #ff00ff;
-        border-color: #0000ff;
-    }
-
-    60% {
-        transform: scale(0.8) rotate(135deg) translateX(-100px);
-        color: #0000ff;
-        background-color: #ff0000;
-        border-color: #ff00ff;
-    }
-
-    80% {
-        transform: scale(1.1) rotate(180deg) translateX(100px);
-        color: #ffff00;
-        background-color: #00ff00;
-        border-color: #ff0000;
+        opacity: 0;
+        transform: translateY(-120px);
     }
 
     100% {
-        transform: scale(1) rotate(360deg) translateX(0);
-        color: #ff0000;
-        background-color: #fff;
-        border-color: #ff0000;
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+
+.gif-container {
+    width: 500px;
+    display: none;
 }
