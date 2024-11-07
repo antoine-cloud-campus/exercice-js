@@ -1,10 +1,3 @@
-// Faire une page web type catalogue produit
-
-// Pour les évènement : 
-// même chose pour les attributs affichés dans les blocs produits
-// lors d'une saisie dans l'input de recherche, à partir de 3 caractères, filtrer les produits affichés afin que leur nom, leur catégorie ou leurs attributs contiennent cette chaine de caractère.
-// lors d'une saisie dans l'input de recherche par prix, si la valeur est bien un chiffre, il faut afficher les produits dont le prix est inférieur à la saisie utilisateur.
-
 // Tableau d'objets produits
 const produits = [
     { titre: 'T-shirt Homme Coton', image: 'tch.jpg', alt: 'Image T-shirt 1', prix: 9, categorie: 't-shirt', attributs: ['coton', 'homme'], note: 1 },
@@ -46,7 +39,7 @@ function filtrerParAttribut(attribut) {
 // Recherche par nom, catégorie ou attribut
 function rechercherProduits() {
     const recherche = document.getElementById("search-input").value.toLowerCase();
-    if (recherche.length >= 1) {
+    if (recherche.length >= 3) {
         produitsAffiches = produits.filter(p =>
             p.titre.toLowerCase().includes(recherche) ||
             p.categorie.toLowerCase().includes(recherche) ||
