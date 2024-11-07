@@ -39,7 +39,7 @@ body {
     }
 }
 
-.gif-container {
+.gif-container, .gif-end {
     width: 500px;
     display: none;
 }

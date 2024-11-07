@@ -16,9 +16,14 @@ function startTimer() {
             gif.style.display = 'block';
             setTimeout(() => {
                 gif.style.display = 'none';
-            }, 2000);
+            }, 2500);
         }
         if (seconds <= 0) {
+            const gifEnd = document.querySelector('.gif-end');
+            gifEnd.style.display = 'block';
+            setTimeout(() => {
+                gif.style.display = 'none';
+            }, 2500);
             clearInterval(countdownInterval);
             text.style.display = 'block';
             text.textContent = "Voilà c'est fini";
