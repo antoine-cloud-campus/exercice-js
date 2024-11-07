@@ -26,7 +26,7 @@ function startTimer() {
             }, 2500);
             clearInterval(countdownInterval);
             text.style.display = 'block';
-            text.textContent = "Voilà c'est fini";
+            text.textContent = "Est ce que c'est bon pour vous ?";
             displayTime(0)
         }
     }, 1000);

@@ -9,37 +9,46 @@ body {
     color: rgb(33, 255, 51);
 }
 
+#text-container {
+    position: relative;
+    width: fit-content;
+    margin: 24px auto;
+}
+
 .timer {
     font-size: 2rem;
     margin-top: 20px;
 }
 
 #text {
+    white-space: nowrap;
     position: absolute;
-    top: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200%);
     display: none;
     font-size: 2rem;
     font-weight: bold;
     padding: 20px;
     border: 2px solid #fff;
     border-radius: 10px;
-    text-align: center;
     animation: fadeIn 2s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: translateY(-120px);
+        /* transform: translateY(-120px); */
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0);
+        /* transform: translateY(0); */
     }
 }
 
-.gif-container, .gif-end {
+.gif-container,
+.gif-end {
     width: 500px;
     display: none;
 }
