@@ -8,6 +8,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .circle {
