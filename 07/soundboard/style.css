@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #92a8bd;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin: 16px auto;
+    max-width: 950px;
+    width: 90%;
+}
+
+.sound-btn {
+    background-color: #8e1e1e;
+    border: none;
+    padding: 20px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.sound-btn:hover {
+    background-color: #2980b9;
+}
+
+.sound-btn:active {
+    background-color: #1abc9c;
+}

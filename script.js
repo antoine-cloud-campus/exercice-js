@@ -1,78 +1,38 @@
-function playSound(filename) {
-    const audio = new Audio(filename);
-    audio.play();
-}
+// Mettre en place un tableau contenant un ensemble de couleur
+const colors = ['#FF5733', '#33FF57', '#3357FF', '#F9E800', '#8E44AD', '#1ABC9C'];
 
-// Son reçu de la DB avec leur nom initial
-let soundData = [
-    { sound: 'sounds_crash.mp3', label: 'Crash' },
-    { sound: 'sounds_kick-bass.mp3', label: 'Kick Bass' },
-    { sound: 'sounds_snare.mp3', label: 'Snare' },
-    { sound: 'sounds_tom-1.mp3', label: 'Tom 1' },
-    { sound: 'sounds_tom-2.mp3', label: 'Tom 2' },
-    { sound: 'sounds_tom-3.mp3', label: 'Tom 3' },
-    { sound: 'sounds_tom-4.mp3', label: 'Tom 4' },
-    { sound: 'secret.mp3', label: '???' }
-];
+document.addEventListener('click', function (event) {
 
-// Touches du clavier azerty dans l'ordre
-const keyAzertyBoard = ['a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'w', 'x', 'c', 'v', 'b', 'n'];
+    // On demande la position verticale et horizontal du click dans la page (event.pageX, event.pageY)
+    const posX = event.pageX;
+    const posY = event.pageY;
 
-const container = document.getElementById('container');
+    // Générer une taille aléatoire entre 50 et 150 pixels
+    const size = Math.floor(Math.random() * 101) + 50;
 
-// Fonction pour ajouter dynamiquement un bouton
-function addButton(soundData, index) {
-    const button = document.createElement('button');
-    button.classList.add('sound-btn');
-    button.setAttribute('data-sound', soundData.sound);
-    button.setAttribute('data-key', keyAzertyBoard[index]);
-    button.innerHTML = `${soundData.label}<br>${keyAzertyBoard[index].toUpperCase()}`;
-    container.appendChild(button);
-}
+    // Créer le cercle 
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('circle');
+    newDiv.style.width = `${size}px`;
+    newDiv.style.height = `${size}px`;
+    newDiv.style.left = `${posX - size / 2}px`;
+    newDiv.style.top = `${posY - size / 2}px`;
+    newDiv.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
-// Créer les boutons initiaux
-soundData.forEach((data, index) => {
-    addButton(data, index);
-});
+    // Ajouter le div dans la page
+    document.body.appendChild(newDiv);
 
-// Formulaire ajout musique
-document.getElementById('add-sound-form').addEventListener('submit', (event) => {
-    event.preventDefault();
+    // Selectionne le dernier cercle et le fait disparaitre une fois le bas de window atteint
+    const lastDiv = document.querySelector('div:last-child');
+    const pageHeight = window.innerHeight;
+    setTimeout(() => {
+        lastDiv.style.top = `${pageHeight - size}px`;
+    }, 10);
 
-    const fileInput = document.getElementById('sound-file');
-    const labelInput = document.getElementById('sound-label');
-
-    const file = fileInput.files[0];
-    const label = labelInput.value;
-
-    if (file && label) {
-        const newSound = URL.createObjectURL(file);
-        const newSoundData = { sound: newSound, label: label };
-
-        soundData.push(newSoundData);
-
-        addButton(newSoundData, soundData.length - 1);
-
-        fileInput.value = '';
-        labelInput.value = '';
-    }
-});
-
-// Délégation d'événements pour les boutons dynamiques
-container.addEventListener('click', (event) => {
-    const button = event.target.closest('.sound-btn');
-    if (button) {
-        const sound = button.getAttribute('data-sound');
-        playSound(sound);
-    }
-});
-
-// On key down event
-document.addEventListener('keydown', (event) => {
-    const button = Array.from(document.querySelectorAll('.sound-btn')).find(button => button.dataset.key === event.key.toLowerCase());
-
-    if (button) {
-        const sound = button.getAttribute('data-sound');
-        playSound(sound);
-    }
+    lastDiv.addEventListener('transitionend', function () {
+        lastDiv.style.opacity = '0';
+        setTimeout(() => {
+            lastDiv.remove();
+        }, 1000);
+    });
 });
