@@ -1,42 +1,136 @@
-const colors = ['#FF5733', '#33FF57', '#3357FF', '#F9E800', '#8E44AD', '#1ABC9C'];
+// Faire une page web type catalogue produit
 
-document.addEventListener('click', function (event) {
+// Pour les évènement : 
+// même chose pour les attributs affichés dans les blocs produits
+// lors d'une saisie dans l'input de recherche, à partir de 3 caractères, filtrer les produits affichés afin que leur nom, leur catégorie ou leurs attributs contiennent cette chaine de caractère.
+// lors d'une saisie dans l'input de recherche par prix, si la valeur est bien un chiffre, il faut afficher les produits dont le prix est inférieur à la saisie utilisateur.
 
-    // Récupere la position du click
-    const posX = event.pageX;
-    const posY = event.pageY;
+// Tableau d'objets produits
+const produits = [
+    { titre: 'T-shirt Homme Coton', image: 'tch.jpg', alt: 'Image T-shirt 1', prix: 9, categorie: 't-shirt', attributs: ['coton', 'homme'], note: 1 },
+    { titre: 'T-shirt Femme Coton', image: 'tcf.jpg', alt: 'Image T-shirt 2', prix: 9, categorie: 't-shirt', attributs: ['coton', 'femme'], note: 1 },
 
-    // Générer une taille aléatoire entre 50 et 150 pixels
-    const size = Math.floor(Math.random() * 101) + 50;
+    { titre: 'T-shirt Homme Polyester', image: 'tph.jpg', alt: 'Image T-shirt 3', prix: 19, categorie: 't-shirt', attributs: ['polyester', 'homme'], note: 2 },
+    { titre: 'T-shirt Femme Polyester', image: 'tpf.jpg', alt: 'Image T-shirt 4', prix: 20, categorie: 't-shirt', attributs: ['polyester', 'femme'], note: 2 },
 
-    // Créer le cercle 
-    const circleDiv = document.createElement('div');
-    circleDiv.classList.add('circle');
-    circleDiv.style.position = 'absolute';
-    circleDiv.style.width = `${size}px`;
-    circleDiv.style.height = `${size}px`;
-    circleDiv.style.left = `${posX - size / 2}px`;
-    circleDiv.style.top = `${posY - size / 2}px`;
-    circleDiv.style.opacity = '1';
-    circleDiv.style.borderRadius = '50%';
-    circleDiv.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    circleDiv.style.transition = '1s';
+    { titre: 'Chemise Homme Coton', image: 'cch.jpg', alt: 'Image Chemise 1', prix: 35, categorie: 'chemise', attributs: ['coton', 'homme'], note: 2 },
+    { titre: 'Chemise Femme Coton', image: 'ccf.jpg', alt: 'Image Chemise 2', prix: 50, categorie: 'chemise', attributs: ['coton', 'femme'], note: 4 },
 
+    { titre: 'Chemise Homme Polyester', image: 'cph.jpg', alt: 'Image Chemise 3', prix: 100, categorie: 'chemise', attributs: ['polyester', 'homme'], note: 5 },
+    { titre: 'Chemise Femme Polyester', image: 'cpf.jpg', alt: 'Image Chemise 4', prix: 999.99, categorie: 'chemise', attributs: ['polyester', 'femme'], note: 5 },
+];
 
-    // Ajouter le div dans la page
-    document.body.appendChild(circleDiv);
+// Variables pour la pagination et les filtres
+let produitsAffiches = produits;
+let produitsParPage = 6;
+let pageCourante = 1;
 
-    // Selectionne le dernier cercle et le fait disparaitre une fois le bas de window atteint
-    const pageHeight = window.innerHeight;
-    
-    setTimeout(() => {
-        circleDiv.style.top = `${pageHeight - size}px`;
-    }, 0);
+function retournePremierePage() {
+    pageCourante = 1;
+}
 
-    circleDiv.addEventListener('transitionend', function () {
-        circleDiv.style.opacity = 0;
-        circleDiv.addEventListener('transitionend', function () {
-            circleDiv.remove();
-        });
+// Filtrer les produits par catégorie
+function filtrerParCategorie(categorie) {
+    produitsAffiches = categorie ? produits.filter(p => p.categorie === categorie) : produits;
+    retournePremierePage();
+    afficherProduits();
+}
+
+// Filtrer les produits par attribut
+function filtrerParAttribut(attribut) {
+    produitsAffiches = attribut ? produits.filter(p => p.attributs.includes(attribut)) : produits;
+    retournePremierePage()
+    afficherProduits();
+}
+
+// Recherche par nom, catégorie ou attribut
+function rechercherProduits() {
+    const recherche = document.getElementById("search-input").value.toLowerCase();
+    if (recherche.length >= 1) {
+        produitsAffiches = produits.filter(p =>
+            p.titre.toLowerCase().includes(recherche) ||
+            p.categorie.toLowerCase().includes(recherche) ||
+            p.attributs.some(attr => attr.toLowerCase().includes(recherche))
+        );
+    } else {
+        produitsAffiches = produits;
+    }
+    retournePremierePage()
+    afficherProduits();
+}
+
+// Filtrer par prix
+function filtrerParPrix() {
+    const prixMax = parseFloat(document.getElementById("price-input").value);
+    console.log(prixMax)
+    if (!isNaN(prixMax) && prixMax > 0) {
+        produitsAffiches = produits.filter(p => p.prix <= prixMax);
+        retournePremierePage()
+        afficherProduits();
+    } else {
+        produitsAffiches = produits;
+    }
+}
+
+// Affiche les liens de pagination
+function afficherPagination() {
+    const pagination = document.getElementById("pagination");
+    const nombrePages = Math.ceil(produitsAffiches.length / produitsParPage);
+
+    pagination.innerHTML = '';
+    for (let i = 1; i <= nombrePages; i++) {
+        pagination.innerHTML += `<a href="#" onclick="changerPage(${i})">${i}</a>`;
+    }
+}
+
+// Changer de page
+function changerPage(page) {
+    pageCourante = page;
+    afficherProduits();
+}
+
+// Affiche les catégories uniques dans la barre latérale
+function afficherCategories() {
+    const categoriesList = document.getElementById("categories-list");
+    // Créer un tableau contenant toutes les catégories de chaque produits (Unique)
+    const categories = [...new Set(produits.map(p => p.categorie))];
+    categoriesList.innerHTML = '<li><a href="#" onclick="filtrerParCategorie("")">Voir tous</a></li>';
+    categories.forEach(categorie => {
+        categoriesList.innerHTML += `<li><a href="#" onclick="filtrerParCategorie('${categorie}')">${categorie}</a></li>`;
     });
+}
+// Affiche les produits filtrés et paginés
+function afficherProduits() {
+    const productList = document.getElementById("product-list");
+    const debutIndex = (pageCourante - 1) * produitsParPage;
+    const produitsPage = produitsAffiches.slice(debutIndex, debutIndex + produitsParPage);
+
+    productList.innerHTML = '';
+    produitsPage.forEach(produit => {
+        productList.innerHTML += `
+            <div class="product-item">
+                <div class='img-container'>
+                    <img src="${produit.image}" alt="${produit.alt}">
+                </div>    
+                <h3>${produit.titre}</h3>
+                <p>Prix: ${produit.prix}€</p>
+                <p>Catégorie: <a href="#" onclick="filtrerParCategorie('${produit.categorie}')">${produit.categorie}</a></p>
+                <p>Attributs: ${produit.attributs.map(attr => `<a href="#" onclick="filtrerParAttribut('${attr}')">${attr}</a>`).join(', ')}</p>
+                <p>Note: ${Array.from({ length: 5 }, (_, i) => `<i class="${i < produit.note ? 'fa-solid fa-star' : 'fa-regular fa-star'}"></i>`).join('')}</p>
+            </div>
+        `;
+    });
+    afficherPagination();
+}
+// Ajouter les événements de recherche et de filtre
+function ajouterEvenements() {
+    document.getElementById("search-input").addEventListener("input", rechercherProduits);
+    document.getElementById("price-input").addEventListener("input", filtrerParPrix);
+}
+
+// Initialiser la page
+document.addEventListener("DOMContentLoaded", () => {
+    afficherCategories();
+    afficherProduits();
+    ajouterEvenements();
 });

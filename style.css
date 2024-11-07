@@ -1,15 +1,99 @@
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    height: 100dvh;
-    width: 100dvw;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(29, 29, 148);
+    text-decoration: underline;
+    outline: none;
+    cursor: pointer;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+input {
+    padding: 4px 8px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100dvh;
+}
+
+aside {
+    min-width: 200px;
+    width: 15%;
+    max-width: 400px;
+
+    padding: 20px;
+    background-color: #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#categories-list li {
+    padding-bottom: 4px;
+    text-transform: capitalize;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: capitalize;
+
+}
+
+.pagination {
+    margin: 0 auto;
+}
+
+.pagination a {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.img-container {
+    width: 100%;
+    height: 120px;
     overflow: hidden;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+}
+
+img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
