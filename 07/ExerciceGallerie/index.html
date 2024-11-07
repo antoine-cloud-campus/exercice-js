@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie d'Images</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <!-- Thumbnails -->
+        <img src="./image1.jpg" alt="Image 1" data-full="./image1.jpg" data-caption="Légende de l'image 1">
+        <img src="./image2.jpg" alt="Image 2" data-full="./image2.jpg" data-caption="Légende de l'image 2">
+        <img src="./image3.jpg" alt="Image 3" data-full="./image3.jpg" data-caption="Légende de l'image 3">
+        <img src="./image4.jpg" alt="Image 4" data-full="./image4.jpg" data-caption="Légende de l'image 4">
+        <img src="./image5.jpg" alt="Image 5" data-full="./image5.jpg" data-caption="Légende de l'image 5">
+    </div>
+
+    <div class="main-display">
+        <!-- Main Display Image -->
+        <img id="main-image" class="main-image" src="./image1.jpg" alt="Image 1">
+        <!-- Caption -->
+        <div id="caption" class="caption">Légende de l'image 1</div>
+    </div>
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

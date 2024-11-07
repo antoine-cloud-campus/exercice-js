@@ -1,14 +1,32 @@
-document.addEventListener('DOMContentLoaded', function () {
-    function changeMainImage(fullImageSrc, captionText) {
-        document.getElementById('main-image').src = fullImageSrc;
-        document.getElementById('caption').textContent = captionText;
+let text = document.getElementById('text')
+
+function startTimer() {
+    let seconds = parseInt(prompt('Donnez un nombre de seconde pour le timer'))
+    while (isNaN(seconds) || seconds <= 0) {
+        seconds = parseInt(prompt("Veuillez entrer un nombre de secondes valide."));
     }
 
-    document.querySelectorAll('.sidebar img').forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-            const fullImageSrc = thumbnail.getAttribute('data-full');
-            const captionText = thumbnail.getAttribute('data-caption');
-            changeMainImage(fullImageSrc, captionText);
-        });
-    });
-});
+    displayTime(seconds);
+
+    let countdownInterval = setInterval(() => {
+        seconds--;
+        displayTime(seconds);
+        if (seconds <= 0) {
+            clearInterval(countdownInterval);
+            text.style.display = 'block';
+            text.textContent = "Voilà c'est fini";
+            displayTime(0)
+        }
+    }, 1000);
+}
+
+function displayTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    document.getElementById('timerDisplay').textContent =
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+startTimer();
