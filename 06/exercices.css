@@ -35,3 +35,8 @@ table {
 .event-card a:hover {
     text-decoration: underline;
 }
+
+.test {
+  font-weight: 400;
+  color: red;
+}
