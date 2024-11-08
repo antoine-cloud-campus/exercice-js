@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Liste des Tâches</h1>
+    <!-- Filtres -->
+    <div class="filter-container">
+        <input type="text" id="searchTitle" placeholder="Filtrer par titre ou description" oninput="filterTasks()">
+        <select id="filterDestinataire" onchange="filterTasks()"></select>
+        <select id="filterStatut" onchange="filterTasks()"></select>
+        <select id="filterCategorie" onchange="filterTasks()"></select>
+        <button onclick="ouvrirModale()">Ajouter Tache</button>
+    </div>
+
+    <!-- Tableau des Tâches -->
+    <table id="tasksTable">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Statut</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+                <th>Destinataire</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les tâches seront ajoutées ici dynamiquement -->
+        </tbody>
+    </table>
+
+    <!-- Formulaire d'ajout de tâche -->
+    <dialog id="modal" class="modal">
+        <h3>Ajouter une nouvelle tâche</h3>
+        <form id="taskForm" onsubmit="addTask(event)">
+            <input type="text" id="title" placeholder="Titre" required>
+            <textarea id="description" placeholder="Description" required></textarea>
+            <select id="statut" required></select>
+            <select id="categorie" required></select>
+            <input type="text" id="destinataire" placeholder="Destinataire" required>
+            <button type="submit">Ajouter</button>
+        </form>
+    </dialog>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button onclick="afficherCalculatrice()">Afficher calculatrice</button>
+    <button onclick="cacherCalculatrice()">Cacher calculatrice</button>
+    <div id="calculator" class="calculator">
+        <h2>Calculatrice</h2>
+        <form id="calcForm">
+            <div>
+                <input type="text" id="value1" placeholder="Première valeur">
+                <div class="hidden">Entrer un chiffre</div>
+            </div>
+            <div>
+                <input type="text" id="value2" placeholder="Deuxième valeur">
+                <div class="hidden">Entrer un chiffre</div>
+            </div>
+            <div>
+                <select id="operator">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                    <option value="%">%</option>
+                    <option value="**">**</option>
+                </select>
+                <div class="hidden">selectionné un opérateur</div>
+            </div>
+            <button type="button" onclick="calculate()">Calculer</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <div id="tooltip" class="tooltip hidden"></div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

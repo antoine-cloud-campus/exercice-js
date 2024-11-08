@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+
+button {
+    height: fit-content;
+}
+
+#value1:hover + .hidden {
+    display: block;
+}
+#value2:hover + .hidden {
+    display: block;
+}
+#operator:hover + .hidden {
+    display: block;
+}
+
+form {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    gap: 16px;
+    height: 64px;
+    width: 800px;
+}
+
+input, select {
+    width: 200px;
+}
