@@ -4,10 +4,6 @@
         const operator = document.getElementById('operator').value;
         let result = '';
 
-        if (!['+', '-', '*', '/', '**', '%'].includes(operator)) {
-            alert('Veuillez sélectionner un opérateur valide');
-        }
-
         if (isNaN(value1) || isNaN(value2)) {
             alert('Veuillez entrer des valeurs numériques valides.');
             return;
@@ -38,10 +34,10 @@
                 result = num1 % num2;
                 break;
             case '**':
-                result = Math.pow(num1, num2);
+                result = num1 ** num2;
                 break;
             default:
-                alert('Opérateur inconnu');
+                alert('Veuillez sélectionner un opérateur valide');
                 return;
         }
 
