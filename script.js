@@ -55,14 +55,13 @@ function rechercherProduits() {
 // Filtrer par prix
 function filtrerParPrix() {
     const prixMax = parseFloat(document.getElementById("price-input").value);
-    console.log(prixMax)
-    if (!isNaN(prixMax) && prixMax > 0) {
-        produitsAffiches = produits.filter(p => p.prix <= prixMax);
-        retournePremierePage()
-        afficherProduits();
-    } else {
+    if (isNaN(prixMax) || prixMax < 0 || !prixMax) {
         produitsAffiches = produits;
+    } else {
+        produitsAffiches = produits.filter(p => p.prix <= prixMax);
     }
+    retournePremierePage()
+    afficherProduits();
 }
 
 // Affiche les liens de pagination
