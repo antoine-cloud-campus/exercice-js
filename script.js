@@ -1,150 +1,193 @@
-// Tableau d'objets produits
-let produits = [
-    { titre: 'T-shirt Homme Coton', image: 'tch.jpg', alt: 'Image T-shirt 1', prix: 9, categorie: 't-shirt', attributs: ['coton', 'homme'], note: 1 },
-    { titre: 'T-shirt Femme Coton', image: 'tcf.jpg', alt: 'Image T-shirt 2', prix: 9, categorie: 't-shirt', attributs: ['coton', 'femme'], note: 1 },
-
-    { titre: 'T-shirt Homme Polyester', image: 'tph.jpg', alt: 'Image T-shirt 3', prix: 19, categorie: 't-shirt', attributs: ['polyester', 'homme'], note: 2 },
-    { titre: 'T-shirt Femme Polyester', image: 'tpf.jpg', alt: 'Image T-shirt 4', prix: 20, categorie: 't-shirt', attributs: ['polyester', 'femme'], note: 2 },
-
-    { titre: 'Chemise Homme Coton', image: 'cch.jpg', alt: 'Image Chemise 1', prix: 35, categorie: 'chemise', attributs: ['coton', 'homme'], note: 2 },
-    { titre: 'Chemise Femme Coton', image: 'ccf.jpg', alt: 'Image Chemise 2', prix: 50, categorie: 'chemise', attributs: ['coton', 'femme'], note: 4 },
-
-    { titre: 'Chemise Homme Polyester', image: 'cph.jpg', alt: 'Image Chemise 3', prix: 100, categorie: 'chemise', attributs: ['polyester', 'homme'], note: 5 },
-    { titre: 'Chemise Femme Polyester', image: 'cpf.jpg', alt: 'Image Chemise 4', prix: 999.99, categorie: 'chemise', attributs: ['polyester', 'femme'], note: 5 },
+let tasks = [
+    {
+        title: 'Réunion avec le client',
+        statut: 'Validée',
+        categorie: 'Travail',
+        description: 'Discuter des nouvelles fonctionnalités du projet.',
+        destinataire: 'Alice'
+    },
+    {
+        title: 'Faire les courses',
+        statut: 'A faire',
+        categorie: 'Personnel',
+        description: 'Acheter des légumes et des fruits.',
+        destinataire: 'Bob'
+    },
+    {
+        title: 'Réviser le code de la fonctionnalité X',
+        statut: 'En cours',
+        categorie: 'Travail',
+        description: 'Améliorer le code et corriger les bugs sur la fonctionnalité X.',
+        destinataire: 'Charlie'
+    },
+    {
+        title: 'Créer la maquette pour l\'application mobile',
+        statut: 'En validation',
+        categorie: 'Travail',
+        description: 'Concevoir l\'interface utilisateur pour l\'application mobile.',
+        destinataire: 'David'
+    },
+    {
+        title: 'Organiser le planning des vacances',
+        statut: 'A faire',
+        categorie: 'Personnel',
+        description: 'Planifier et réserver les vacances d\'été.',
+        destinataire: 'Eva'
+    },
+    {
+        title: 'Analyser les résultats de la campagne publicitaire',
+        statut: 'Urgent',
+        categorie: 'Travail',
+        description: 'Analyser les performances des publicités Facebook et Google.',
+        destinataire: 'Frank'
+    },
+    {
+        title: 'Faire la mise à jour du site web',
+        statut: 'A faire',
+        categorie: 'Travail',
+        description: 'Mettre à jour le contenu et les images du site web.',
+        destinataire: 'Grace'
+    },
+    {
+        title: 'Envoyer les rapports mensuels',
+        statut: 'En cours',
+        categorie: 'Travail',
+        description: 'Compiler et envoyer les rapports financiers du mois.',
+        destinataire: 'Henry'
+    },
+    {
+        title: 'Faire un suivi des objectifs personnels',
+        statut: 'En attente',
+        categorie: 'Personnel',
+        description: 'Vérifier les objectifs de l\'année et voir les progrès réalisés.',
+        destinataire: 'Irene'
+    },
+    {
+        title: 'Réunion pour définir les priorités du projet',
+        statut: 'Validée',
+        categorie: 'Travail',
+        description: 'Discuter des priorités et définir les tâches à réaliser pour le projet.',
+        destinataire: 'Jack'
+    }
 ];
 
-// Variables pour la pagination et les filtres
-let produitsAffiches = produits;
-let produitsParPage = 6;
-let pageCourante = 1;
+let statuts = ["Validée", "En validation", "En cours", "Urgent", "En attente", "A faire"];
+let categories = ["Travail", "Personnel"];
 
-function retournePremierePage() {
-    pageCourante = 1;
+// Fonction pour mettre à jour les options des status
+function populateOptions(elementId, type) {
+    const selectElement = document.getElementById(elementId);
+    // Option par défaut
+    selectElement.innerHTML = `<option value="">${type == statuts ? 'Statuts' : 'Catégories'}</option>`;
+
+    type.forEach(statut => {
+        const option = document.createElement('option');
+        option.value = statut;
+        option.textContent = statut;
+        selectElement.appendChild(option);
+    })
+
 }
 
-// Filtrer les produits par catégorie
-function filtrerParCategorie(categorie) {
-    produitsAffiches = categorie ? produits.filter(p => p.categorie === categorie) : produits;
-    retournePremierePage();
-    afficherProduits();
-}
+// Fonction pour mettre à jour les options du filtre destinataire
+function populateDestinataireOptions() {
+    const filterDestinataire = document.getElementById('filterDestinataire');
+    const destinataires = [...new Set(tasks.map(task => task.destinataire))];
 
-// Filtrer les produits par attribut
-function filtrerParAttribut(attribut) {
-    produitsAffiches = attribut ? produits.filter(p => p.attributs.includes(attribut)) : produits;
-    retournePremierePage()
-    afficherProduits();
-}
+    // Option par défaut
+    filterDestinataire.innerHTML = '<option value="">Filtrer par destinataire</option>';
 
-// Recherche par nom, catégorie ou attribut
-function rechercherProduits() {
-    const recherche = document.getElementById("search-input").value.toLowerCase();
-    if (recherche.length >= 3) {
-        produitsAffiches = produits.filter(p =>
-            p.titre.toLowerCase().includes(recherche) ||
-            p.categorie.toLowerCase().includes(recherche) ||
-            p.attributs.some(attr => attr.toLowerCase().includes(recherche))
-        );
-    } else {
-        produitsAffiches = produits;
-    }
-    retournePremierePage()
-    afficherProduits();
-}
-
-// Filtrer par prix
-function filtrerParPrix() {
-    const prixMax = parseFloat(document.getElementById("price-input").value);
-    if (isNaN(prixMax) || prixMax < 0 || !prixMax) {
-        produitsAffiches = produits;
-    } else {
-        produitsAffiches = produits.filter(p => p.prix <= prixMax);
-    }
-    retournePremierePage()
-    afficherProduits();
-}
-
-// Affiche les liens de pagination
-function afficherPagination() {
-    const pagination = document.getElementById("pagination");
-    const nombrePages = Math.ceil(produitsAffiches.length / produitsParPage);
-
-    pagination.innerHTML = '';
-    for (let i = 1; i <= nombrePages; i++) {
-        pagination.innerHTML += `<a href="#" onclick="changerPage(${i})">${i}</a>`;
-    }
-}
-
-// Changer de page
-function changerPage(page) {
-    pageCourante = page;
-    afficherProduits();
-}
-
-// Affiche les catégories uniques dans la barre latérale
-function afficherCategories() {
-    const categoriesList = document.getElementById("categories-list");
-    // Créer un tableau contenant toutes les catégories de chaque produits (Unique)
-    const categories = [...new Set(produits.map(p => p.categorie))];
-    categoriesList.innerHTML = '<li><a href="#" onclick="filtrerParCategorie()">Voir tous</a></li>';
-    categories.forEach(categorie => {
-        categoriesList.innerHTML += `<li><a href="#" onclick="filtrerParCategorie('${categorie}')">${categorie}</a></li>`;
+    destinataires.forEach(dest => {
+        const option = document.createElement('option');
+        option.value = dest;
+        option.textContent = dest;
+        filterDestinataire.appendChild(option);
     });
 }
-// Affiche les produits filtrés et paginés
-function afficherProduits() {
-    const productList = document.getElementById("product-list");
-    const debutIndex = (pageCourante - 1) * produitsParPage;
-    const produitsPage = produitsAffiches.slice(debutIndex, debutIndex + produitsParPage);
 
-    productList.innerHTML = '';
-    produitsPage.forEach(produit => {
-        productList.innerHTML += `
-            <div class="product-item">
-                <div class='img-container'>
-                    <img src="${produit.image}" alt="${produit.alt}">
-                </div>    
-                <h3>${produit.titre}</h3>
-                <p>Prix: ${produit.prix}€</p>
-                <p>Catégorie: <a href="#" onclick="filtrerParCategorie('${produit.categorie}')">${produit.categorie}</a></p>
-                <p>Attributs: ${produit.attributs.map(attr => `<a href="#" onclick="filtrerParAttribut('${attr}')">${attr}</a>`).join(', ')}</p>
-                <p>Note: ${Array.from({ length: 5 }, (_, i) => `<i class="${i < produit.note ? 'fa-solid fa-star' : 'fa-regular fa-star'}"></i>`).join('')}</p>
-            </div>
+// Fonction pour afficher les tâches dans le tableau
+function displayTasks() {
+    const tableBody = document.querySelector('#tasksTable tbody');
+    tableBody.innerHTML = '';
+    tasks.forEach(task => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${task.title}</td>
+            <td>${task.statut}</td>
+            <td>${task.categorie}</td>
+            <td>${task.description}</td>
+            <td>${task.destinataire}</td>
         `;
+        tableBody.appendChild(row);
     });
-    afficherPagination();
+
+    populateDestinataireOptions();
+    populateOptions('filterCategorie', categories)
+    populateOptions('categorie', categories);
+    populateOptions('filterStatut', statuts);
+    populateOptions('statut', statuts);
 }
-// Ajouter les événements de recherche et de filtre
-function ajouterEvenements() {
-    document.getElementById("search-input").addEventListener("input", rechercherProduits);
-    document.getElementById("price-input").addEventListener("input", filtrerParPrix);
+
+// Fonction pour ajouter une tâche
+function addTask(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const statut = document.getElementById('statut').value;
+    const categorie = document.getElementById('categorie').value;
+    const description = document.getElementById('description').value;
+    const destinataire = document.getElementById('destinataire').value;
+
+    if (!title || !statut || !categorie || !description || !destinataire) {
+        alert("Tous les champs doivent être remplis !");
+        return;
+    }
+
+    const newTask = { title, statut, categorie, description, destinataire };
+
+    tasks.push(newTask);
+    
+    displayTasks();
+    fermerModale();
+    
+    document.getElementById('taskForm').reset();
 }
 
-// Initialiser la page
-document.addEventListener("DOMContentLoaded", () => {
-    afficherCategories();
-    afficherProduits();
-    ajouterEvenements();
-});
+// Fonction pour filtrer les tâches
+function filterTasks() {
+    const searchTitle = document.getElementById('searchTitle').value.toLowerCase();
+    const filterDestinataire = document.getElementById('filterDestinataire').value;
+    const filterStatut = document.getElementById('filterStatut').value;
+    const filterCategorie = document.getElementById('filterCategorie').value;
 
-// "Back-End"
-let celluleSelectionnee = null;
+    const filteredTasks = tasks.filter(task => {
+        const matchesTitle = task.title.toLowerCase().includes(searchTitle) || task.description.toLowerCase().includes(searchTitle);
+        const matchesDestinataire = !filterDestinataire || task.destinataire === filterDestinataire;
+        const matchesStatut = !filterStatut || task.statut === filterStatut;
+        const matchesCategorie = !filterCategorie || task.categorie === filterCategorie;
 
+        return matchesTitle && matchesDestinataire && matchesStatut && matchesCategorie;
+    });
+
+    const tableBody = document.querySelector('#tasksTable tbody');
+    tableBody.innerHTML = '';
+    filteredTasks.forEach(task => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${task.title}</td>
+            <td>${task.statut}</td>
+            <td>${task.categorie}</td>
+            <td>${task.description}</td>
+            <td>${task.destinataire}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Fonctions Modale
 function ouvrirModale() {
-    const modal = document.getElementById("product-modal");
+    const modal = document.getElementById("modal");
     modal.showModal();
-    const tbody = document.getElementById("product-table-body");
-    tbody.innerHTML = produits.map(produit => `
-        <tr>
-            <td onclick="selectionnerCellule(this)">${produit.titre}</td>
-            <td onclick="selectionnerCellule(this)">${produit.prix}</td>
-            <td onclick="selectionnerCellule(this)">${produit.categorie}</td>
-            <td onclick="selectionnerCellule(this)">${produit.attributs.join(", ")}</td>
-            <td onclick="selectionnerCellule(this)">${produit.note}</td>
-        </tr>
-    `).join("");
-
-    ajouterDoubleClick();
 
     modal.addEventListener('click', function (event) {
         if (event.target === modal) {
@@ -154,137 +197,9 @@ function ouvrirModale() {
 }
 
 function fermerModale() {
-    const modal = document.getElementById("product-modal");
+    const modal = document.getElementById("modal");
     modal.close();
 }
 
-function selectionnerCellule(cellule) {
-    if (celluleSelectionnee) {
-        celluleSelectionnee.classList.remove("selected");
-    }
-    celluleSelectionnee.classList.add("selected");
-
-    celluleSelectionnee = cellule;
-}
-
-function ajouterDoubleClick() {
-    const cellules = document.querySelectorAll("#product-table td");
-    cellules.forEach(cellule => {
-        cellule.addEventListener("dblclick", () => rendreCelluleEditable(cellule));
-    });
-}
-// Gestion Du déplacement via les flèches dans le tableau
-document.addEventListener("keydown", function (event) {
-    if (!celluleSelectionnee) return;
-
-    let row = celluleSelectionnee.parentElement;
-    let cellIndex = Array.from(row.children).indexOf(celluleSelectionnee);
-    let nextCell = null;
-
-    switch (event.key) {
-        case "ArrowRight":
-            nextCell = row.children[cellIndex + 1] || row.children[0];
-            break;
-        case "ArrowLeft":
-            nextCell = row.children[cellIndex - 1] || row.children[row.children.length - 1];
-            break;
-        case "ArrowDown":
-            let nextRow = row.nextElementSibling;
-            if (nextRow) nextCell = nextRow.children[cellIndex];
-            break;
-        case "ArrowUp":
-            let previousRow = row.previousElementSibling;
-            if (previousRow) nextCell = previousRow.children[cellIndex];
-            break;
-    }
-
-    if (nextCell) selectionnerCellule(nextCell);
-});
-
-function rendreCelluleEditable(cellule) {
-
-    // Récupère la position de la Cellule & Sa valeur
-    let row = cellule.parentElement;
-    let rowIndex = Array.from(row.parentElement.children).indexOf(row);
-    let cellIndex = Array.from(row.children).indexOf(cellule);
-    let initialValue = cellule.textContent;
-    let input;
-
-    // Créer l'input en fonction de la celulle (text / Number / select)
-    function createInput(type) {
-        input = document.createElement(type);
-        input.value = initialValue;
-        return input;
-    };
-
-    // Créer l'input adapté pour la cellule
-    switch (cellIndex) {
-        case 0: // Titre
-            input = createInput("input", { type: "text" });
-            break;
-        case 1: // Prix
-            input = createInput("input", { type: "number" });
-            input.value = parseFloat(initialValue);
-            break;
-        case 2: // Catégorie
-            input = document.createElement("select");
-            ["t-shirt", "chemise"].forEach(optionValue => {
-                let option = document.createElement("option");
-                option.value = optionValue;
-                option.text = optionValue;
-                if (optionValue === initialValue) option.selected = true;
-                input.appendChild(option);
-            });
-            break;
-        case 3: // Attributs
-            input = createInput("input", { type: "text" });
-            break;
-        case 4: // Note
-            input = createInput("input", { type: "number", min: "1", max: "5" });
-            input.value = parseInt(initialValue);
-            break;
-    }
-
-    // Affiche l'input dans la cellule
-    cellule.innerHTML = "";
-    cellule.appendChild(input);
-    input.focus();
-
-    // Enregistre la valeur on Enter / Leave
-    function saveValue() {
-        enregistrerNouvelleValeur(cellule, input, rowIndex, cellIndex);
-    };
-
-    input.addEventListener("blur", saveValue);
-    input.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") saveValue();
-    });
-}
-
-// Enregistre la nouvelle valeur dans le tableau
-function enregistrerNouvelleValeur(cellule, input, rowIndex, cellIndex) {
-    let newValue = input.value;
-
-    cellule.textContent = newValue;
-
-    switch (cellIndex) {
-        case 0:
-            produits[rowIndex].titre = newValue;
-            break;
-        case 1:
-            produits[rowIndex].prix = parseFloat(newValue).toFixed(2);
-            break;
-        case 2:
-            produits[rowIndex].categorie = newValue;
-            break;
-        case 3:
-            produits[rowIndex].attributs = newValue.split(",").map(attr => attr.trim());
-            break;
-        case 4:
-            produits[rowIndex].note = parseInt(newValue);
-            break;
-    }
-
-    celluleSelectionnee = null;
-    afficherProduits()
-}
+// Initialiser l'affichage des tâches
+displayTasks();

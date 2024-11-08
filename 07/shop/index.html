@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside>
+        <h2>Catégories</h2>
+        <ul id="categories-list"></ul>
+        <input type="text" id="search-input" placeholder="Recherche produits">
+        <input type="text" id="price-input" placeholder="Filtrer par prix">
+    </aside>
+    <main>
+        <button class="modifier" onclick="ouvrirModale()">Modifier</button>
+        <div id="product-list" class="product-list"></div>
+        <div id="pagination" class="pagination"></div>
+        <dialog id="product-modal">
+            <div class="modal-content">
+                <button class="close" onclick="fermerModale()">✖</button>
+                <table id="product-table">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Prix</th>
+                            <th>Catégorie</th>
+                            <th>Attributs</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body">
+                        <!-- Rows will be generated here -->
+                    </tbody>
+                </table>
+            </div>
+        </dialog>        
+    </main>
+    <script src="https://kit.fontawesome.com/b9de2c5951.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

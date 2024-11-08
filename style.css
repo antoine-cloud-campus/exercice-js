@@ -1,174 +1,56 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: rgb(29, 29, 148);
-    text-decoration: underline;
-    outline: none;
-    cursor: pointer;
-}
-
-a:hover,
-a:focus {
-    text-decoration: none;
-    outline: none;
-}
-
-input {
-    padding: 4px 8px;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100dvh;
+    max-width: 1096px;
+    margin: auto;
 }
 
-aside {
-    min-width: 200px;
-    width: 15%;
-    max-width: 400px;
-
-    padding: 20px;
-    background-color: #c3c3c3;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-#categories-list li {
-    padding-bottom: 4px;
-    text-transform: capitalize;
-}
-
-main {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(3, 400px);
-    gap: 10px;
-    margin: 0 auto;
-}
-
-.product-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-transform: capitalize;
-
-}
-
-.pagination {
-    margin: 0 auto;
-}
-
-.pagination a {
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.img-container {
-    width: 100%;
-    height: 120px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-img {
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/*  */
-
-/* Style de base pour le tableau */
-#product-table {
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
+    margin-bottom: 20px;
 }
 
-#product-table thead {
-    background-color: #4CAF50;
-    color: white;
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 8px;
     text-align: left;
 }
 
-#product-table th,
-#product-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-}
-
-#product-table tbody tr:nth-child(even) {
-    background-color: #f3f3f3;
-}
-
-#product-table tbody tr:hover {
-    background-color: #ccf5d6;
-}
-
-#product-table tbody td {
-    cursor: pointer;
-}
-
-.selected {
-    background-color: #d3ffdc;
-    outline: 2px solid rgb(85, 170, 112);
-}
-
 dialog {
-    width: 90dvw;
-    margin: auto;
+    width: 380px;
 }
 
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-dialog .modal-content {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
+.modal input,
+.modal select,
+.modal textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-dialog .close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+.modal button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
-    background: transparent;
-    font-size: 1.5rem;
     cursor: pointer;
 }
 
-.selected {
-    background-color: #d3ffe0;
-    outline: 2px solid #5a9;
+.modal button:hover {
+    background-color: #45a049;
 }
 
-.modifier {
-    width: fit-content;
-    align-self: center;
-    padding: 4px 8px;
+.filter-container select {
+    padding: 8px;
+    margin: 10px 5px;
 }
