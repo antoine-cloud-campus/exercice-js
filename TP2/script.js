@@ -1,33 +1,89 @@
-// TP 2 Formulaire :
-// Faire une page inscription
-//     Cette page contient un formulaire avec les champs suivant :
-//         Nom : input type texte
-//         Prénom : input type texte
-//         Pseudo : input type texte
-//         Mot de passe : input type password
-//         Confirmation du Mot de passe : input type password
-//         Adresse : textarea 
-//         Code postal : input type texte
-//         Ville : input type texte
-//         Téléphone : input type texte
-//         + Bouton de validation 
+const form = document.getElementById('registrationForm');
+const successMessage = document.getElementById('successMessage');
 
-//     L'utilisateur va faire ses saisies.
-//     Lorsque l'utilisateur va sortir d'un champs il faut appliquer des controles :
-//         Nom : ne doit pas être vide
-//         Prénom : ne doit pas être vide
-//         Pseudo : doit contenir entre 4 et 14 caractères
-//         Mot de passe : ne doit pas être vide
-//         Confirmation du Mot de passe : ne doit pas être vide et doit être la même chaine que dans le champs mot de passe
-//         Adresse : ne doit pas être vide 
-//         Code postal : doit contenir 5 chiffre
-//         Ville : ne doit pas être vide
-//         Téléphone : doit contenir 10 chiffre
-//             si l'utilisateur utilise les points ou des espaces c'est à nous de les enlever (.replace())
-//             exemple : 01.02.03.04.05 => 0102030405
-//             exemple : 01 02 03 04 05 => 0102030405
-// Si une information n'est pas correcte, on affiche un message d'erreur en dessous du champs qu'on enlève une fois corrigée.
+const fields = {
+    lastName: {
+        element: document.getElementById('lastName'),
+        validate: (value) => value.trim() !== '',
+        errorMessage: "Le nom ne doit pas être vide."
+    },
+    firstName: {
+        element: document.getElementById('firstName'),
+        validate: (value) => value.trim() !== '',
+        errorMessage: "Le prénom ne doit pas être vide."
+    },
+    username: {
+        element: document.getElementById('username'),
+        validate: (value) => value.length >= 4 && value.length <= 14,
+        errorMessage: "Le pseudo doit contenir entre 4 et 14 caractères."
+    },
+    password: {
+        element: document.getElementById('password'),
+        validate: (value) => value.trim() !== '',
+        errorMessage: "Le mot de passe ne doit pas être vide."
+    },
+    confirmPassword: {
+        element: document.getElementById('confirmPassword'),
+        validate: (value) => value === fields.password.element.value,
+        errorMessage: "Les mots de passe ne correspondent pas."
+    },
+    address: {
+        element: document.getElementById('address'),
+        validate: (value) => value.trim() !== '',
+        errorMessage: "L'adresse ne doit pas être vide."
+    },
+    postalCode: {
+        element: document.getElementById('postalCode'),
+        validate: (value) => /^[0-9]{5}$/.test(value),
+        errorMessage: "Le code postal doit contenir 5 chiffres."
+    },
+    city: {
+        element: document.getElementById('city'),
+        validate: (value) => value.trim() !== '',
+        errorMessage: "La ville ne doit pas être vide."
+    },
+    phone: {
+        element: document.getElementById('phone'),
+        validate: (value) => /^[0-9]{10}$/.test(value.replace(/[\s.-]/g, '')),
+        errorMessage: "Le numéro de téléphone doit contenir 10 chiffres."
+    }
+};
 
-// Il est possible que l'utilisateur ne rentre pas dans certains champs il faudra donc aussi faire le controle de tous les champs lors de la validation du form.
-//     On bloque la validation lors du submit, on applique les controles et les messages d'erreur 
-//     Si tout est ok on affiche un texte de validation
+// Test function
+function validateField(field) {
+    const value = field.element.value;
+    const isValid = field.validate(value);
+    const errorElement = field.element.nextElementSibling;
+
+    if (isValid) {
+        errorElement.textContent = '';
+        return true;
+    } else {
+        errorElement.textContent = field.errorMessage;
+        return false;
+    }
+}
+
+// Add listener on each field "blur"
+Object.values(fields).forEach(field => {
+    field.element.addEventListener('blur', () => validateField(field));
+});
+
+// On Submit
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let formIsValid = true;
+
+    Object.values(fields).forEach(field => {
+        if (!validateField(field)) {
+            formIsValid = false;
+        }
+    });
+
+    if (formIsValid) {
+        successMessage.textContent = "Inscription validé";
+        form.reset();
+    } else {
+        successMessage.textContent = '';
+    }
+});
