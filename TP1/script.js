@@ -1,12 +1,3 @@
-// TP 1 Calculatrice
-//     Gestion des erreurs :
-
-//     Mettre deux bouton en haut de page
-//         un pour afficher la calculatrice
-//         un pour cacher la calculatrice
-    
-
-    // Perform the calculation
     function calculate() {
         const value1 = document.getElementById('value1').value.replace(',', '.');
         const value2 = document.getElementById('value2').value.replace(',', '.');
@@ -30,7 +21,6 @@
             return;
         }
 
-        // Perform the calculation based on the operator
         switch (operator) {
             case '+':
                 result = num1 + num2;
