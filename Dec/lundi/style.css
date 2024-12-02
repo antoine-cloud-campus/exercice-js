@@ -54,3 +54,30 @@ section div {
 .exercice-4 {
     background-color: #C8E6C9;
 }
+
+.exercice-5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dog-btn {
+    width: 256px;
+    background-color: green;
+    border: solid 2px salmon;
+    color: rgb(255, 255, 255);
+    padding: 16px 8px;
+    cursor: pointer;
+}
+
+.dog-container {
+    width: 100%;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#dog-img {
+    margin: auto;
+}

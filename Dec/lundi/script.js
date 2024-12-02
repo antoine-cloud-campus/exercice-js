@@ -106,5 +106,13 @@ createDivWithText(leastRentedBook.title + " est le livre le moin emprunté", ".e
 createDivWithText(foundBook.title + " est le livre dont l'id est: 873495", ".exercice-4");
 createDivWithText("L'index de " + bookToDelete.title + " est le " + bookToDeleteIndex + " books.splice(5, 1) pour le retirer du Tableau", ".exercice-4");
 
-
-
+document.querySelector('.exercice-5 button').addEventListener('click', () => {
+    fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const img = document.querySelector('#dog-img');
+            img.src = data.message;
+        })
+});
