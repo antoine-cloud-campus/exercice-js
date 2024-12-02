@@ -19,6 +19,7 @@ body {
 }
 
 .container {
+    position: relative;
     text-align: center;
     background: #fff;
     padding: 20px 40px;
@@ -57,4 +58,58 @@ h2 {
 
 .link:active {
     transform: translateY(1px);
+}
+
+/* December */
+.star {
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+}
+
+.star:hover {
+    transition: ease-in 0.5s;
+    transform: scale(3);
+}
+
+.dec-img {
+    width: 192px;
+    position: absolute;
+    right: -85px;
+    top: -85px;
+    transform: rotate(25deg);
+}
+
+.dec .link-list {
+    gap: 4px;
+}
+
+.dec .link-list a {
+    background-color: rgb(9, 82, 40);
+    margin: auto;
+    white-space: nowrap;
+}
+
+.dec .link-list a:nth-child(2) {
+    width: 80px;
+}
+
+.dec .link-list a:nth-child(3) {
+    width: 120px;
+}
+
+.dec .link-list a:nth-child(4) {
+    width: 160px;
+}
+
+.dec .link-list a:nth-child(5) {
+    width: 200px;
+}
+
+.dec .buche {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(108, 38, 0);
+    margin: -3px auto;
+    border-radius: 0 0 5px 5px;
 }
