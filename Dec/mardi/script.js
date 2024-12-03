@@ -29,7 +29,7 @@ fetch("https://dog.ceo/api/breeds/list/all")
 document.querySelector('.exercice-1 button').addEventListener('click', () => {
     let selectedRace = select.value.replace(/ /g, '/');
 
-    if (selectedRace = 'all') {
+    if (selectedRace === 'all') {
         fetch(`https://dog.ceo/api/breeds/image/random`)
             .then(response => response.json())
             .then(data => {
