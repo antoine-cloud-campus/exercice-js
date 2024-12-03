@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+/* General */
+body {
+    background-color: #000;
+    color: #fff;
+    min-height: 100dvh;
+}
+
+main {
+    display: flex;
+    width: 100%;
+    min-height: calc(100dvh - 60px);
+}
+
+button {
+    background-color: #000;
+    border: solid 2px white;
+    color: white;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: fit-content;
+}
+
+button:hover {
+    background-color: white;
+    color: #000;
+}
+
+/* Navbar */
+
+nav {
+    border-top: solid 4px white;
+    border-bottom: solid 4px white;
+    display: flex;
+    align-content: center;
+}
+
+nav img {
+    padding: 0 0 8px 24px;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-left: 24px;
+}
+
+nav li {
+    text-transform: uppercase;
+}
+
+nav li:hover {
+    color: #5d95b9;
+}
+
+/* Sidebar */
+
+aside {
+    width: fit-content;
+    padding: 24px 12px;
+    border-right: solid 4px white;
+}
+
+aside ul {
+    display: grid;
+    gap: 24px;
+}
+
+aside ul li a {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+aside ul li:hover {
+    color: #5d95b9;
+}
+
+aside ul li i {
+    scale: 2;
+    margin-bottom: 12px;
+}
+
+/* Main Section */
+
+section {
+    padding: 48px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+section>div {
+    border: solid 3px white;
+    padding: 24px;
+}
+
+section h2 {
+    color: #5d95b9;
+    text-transform: uppercase;
+}
+
+/* First Div */
+
+.universe-div {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background-image: url("./assets/space.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.universe-div a {
+    color: #5d95b9;
+    text-transform: uppercase;
+}
+
+.universe-div a:hover {
+    text-decoration: underline;
+}
+
+/* Second Div */
+
+.numbers-div {
+    background-image: url("./assets/space2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
