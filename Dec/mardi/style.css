@@ -58,3 +58,81 @@ section div {
 .exercice-5 {
     background-color: #e6c8de;
 }
+
+/* Exercice 1 */
+
+#dog-img {
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#dog-img:hover {
+    border: solid 1px blue;
+    transform: translateY(-4px);
+}
+
+.saved-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 256px);
+    gap: 16px;
+}
+
+.button {
+    position: relative;
+    padding: 12px 24px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-45deg);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.button:hover::before {
+    left: 110%;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.select {
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.select:focus {
+    outline: none;
+}
+
+option {
+    padding: 10px;
+    font-size: 16px;
+    text-transform: capitalize ;
+    color: black;
+}
