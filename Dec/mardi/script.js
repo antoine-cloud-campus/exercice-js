@@ -29,10 +29,19 @@ fetch("https://dog.ceo/api/breeds/list/all")
 document.querySelector('.exercice-1 button').addEventListener('click', () => {
     let selectedRace = select.value.replace(/ /g, '/');
 
-    fetch(`https://dog.ceo/api/breed/${selectedRace}/images/random`)
-        .then(response => response.json())
-        .then(data => {
-            const img = document.querySelector('#dog-img');
-            img.src = data.message;
-        })
+    if (selectedRace = 'all') {
+        fetch(`https://dog.ceo/api/breeds/image/random`)
+            .then(response => response.json())
+            .then(data => {
+                const img = document.querySelector('#dog-img');
+                img.src = data.message;
+            })
+    } else {
+        fetch(`https://dog.ceo/api/breed/${selectedRace}/images/random`)
+            .then(response => response.json())
+            .then(data => {
+                const img = document.querySelector('#dog-img');
+                img.src = data.message;
+            })
+    }
 });
