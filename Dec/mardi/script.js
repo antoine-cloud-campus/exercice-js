@@ -23,25 +23,21 @@ fetch("https://dog.ceo/api/breeds/list/all")
         });
     })
 
-
-
-
 document.querySelector('.exercice-1 button').addEventListener('click', () => {
-    let selectedRace = select.value.replace(/ /g, '/');
+    const selectedRace = select.value.replace(/ /g, '/');
+    const url = selectedRace === 'all' ? 'https://dog.ceo/api/breeds/image/random' : `https://dog.ceo/api/breed/${selectedRace}/images/random`;
 
-    if (selectedRace === 'all') {
-        fetch(`https://dog.ceo/api/breeds/image/random`)
-            .then(response => response.json())
-            .then(data => {
-                const img = document.querySelector('#dog-img');
-                img.src = data.message;
-            })
-    } else {
-        fetch(`https://dog.ceo/api/breed/${selectedRace}/images/random`)
-            .then(response => response.json())
-            .then(data => {
-                const img = document.querySelector('#dog-img');
-                img.src = data.message;
-            })
-    }
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('#dog-img').src = data.message;
+        });
+});
+
+document.querySelector('#dog-img').addEventListener('click', () => {
+    const img = document.querySelector('#dog-img');
+    const imgCopy = img.cloneNode(true);
+    imgCopy.id = "";
+    const savedImg = document.querySelector('.saved-img');
+    savedImg.appendChild(imgCopy);
 });
