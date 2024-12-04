@@ -50,8 +50,8 @@ function getPlanets() {
                                 const defaultDiv = document.querySelector('.default-planet');
                                 const selectedDiv = document.querySelector('.selected-planet');
                                 defaultDiv.style.display = 'none';
-                                selectedDiv.style.display = 'flex';
                                 getPlanet(planet.url)
+                                selectedDiv.style.display = 'flex';
                             });
 
                             document.getElementById("planet-list").appendChild(li);
