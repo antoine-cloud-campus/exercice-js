@@ -351,10 +351,76 @@ section h2 {
     border-bottom: solid 1px #fff;
 }
 
+.grid-container>ul>li {
+    cursor: pointer;
+}
+
+.grid-container>ul>li:hover {
+    background-color: #5d96b946;
+}
+
+.selected {
+    background-color: #5d95b9;
+}
+
 /* Second Div */
 
 .second-div-planets {
     height: fit-content;
     color: #5d95b9;
     width: 60%;
+}
+
+.selected-planet {
+    display: none;
+    flex-direction: column;
+}
+
+.selected-planet h2 {
+    margin-bottom: 8px;
+}
+
+.selected-planet p {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.selected-planet>p>span {
+    color: #fff;
+}
+
+.selected-planet .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+    margin-left: 12px;
+    padding: 36px 0;
+}
+
+.selected-planet .card-container .card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.selected-planet .card-container .card i {
+    scale: 2;
+    color: #5d95b9;
+}
+
+.selected-planet .card-container .card div {
+    font-size: 13px;
+}
+
+.selected-planet .card-container .card div h3 {
+    color: #5d95b9;
+}
+
+.selected-planet .card-container .card div p {
+    color: #fff;
+}
+
+.selected-planet>button {
+    justify-self: end;
+    align-self: end;
 }
