@@ -7,6 +7,10 @@
     font-family: 'Roboto';
 }
 
+input:focus {
+    outline: none;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -34,11 +38,60 @@ button {
     background-color: #000;
     border: solid 2px white;
     color: white;
-    text-transform: uppercase;
     padding: 8px 16px;
     cursor: pointer;
     transition: 0.3s ease;
     width: fit-content;
+}
+
+.select-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    background-color: #000;
+    border: solid 2px white;
+    cursor: pointer;
+
+}
+
+select {
+    background-color: #000;
+    appearance: none;
+    border: none;
+    padding: 8px 32px 8px 16px;
+    cursor: pointer;
+
+}
+
+select:focus {
+    outline: none;
+}
+
+.select-container>i,
+.search-container>i {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[type=search] {
+    background-color: #000;
+    border: solid 2px white;
+    color: white;
+    padding: 8px 16px;
+    width: 100%;
+}
+
+.search-container {
+    width: 100%;
+    position: relative;
+}
+
+button {
+    text-transform: uppercase;
 }
 
 button:hover {
@@ -110,7 +163,6 @@ section {
     padding: 48px;
     width: 100%;
     display: flex;
-    flex-direction: column;
     gap: 36px;
 }
 
@@ -122,6 +174,13 @@ section>div {
 section h2 {
     color: #5d95b9;
     text-transform: uppercase;
+}
+
+/* Index HTML */
+
+.index-section {
+    flex-direction: column;
+
 }
 
 /* First Div */
@@ -142,7 +201,7 @@ section h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    
+
     background-image: url("./assets/space.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -195,6 +254,7 @@ section h2 {
 .numbers-div .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
     margin-left: 12px;
 }
 
@@ -215,16 +275,86 @@ section h2 {
 
 .numbers-div .card-container .card div {
     font-size: 13px;
-
 }
 
 .numbers-div .card-container .card div h3 {
     color: #5d95b9;
 }
 
-.numbers-div .card-container .card div p {}
-
 .numbers-div button {
     margin-top: 36px;
     align-self: flex-end;
+}
+
+/* Planets HTML */
+
+/* First Div */
+
+.first-div-planets {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 16px;
+}
+
+.first-div-planets::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/space3.avif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.first-div-planets h2 {
+    color: white;
+}
+
+.first-div-planets select {
+    color: white;
+}
+
+.first-div-planets>p {
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Result Grid */
+
+.grid-container {
+    height: 300px;
+    overflow: auto;
+}
+
+.grid-container::-webkit-scrollbar {
+    display: none;
+}
+
+.grid-container header {
+    background-color: #5d95b9;
+}
+
+.grid-container>header,
+.grid-container>ul>li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-bottom: solid 1px #fff;
+}
+
+/* Second Div */
+
+.second-div-planets {
+    height: fit-content;
+    color: #5d95b9;
+    width: 60%;
 }

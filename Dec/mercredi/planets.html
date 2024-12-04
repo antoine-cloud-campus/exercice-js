@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="../../index.html"><img src="./assets/logo.png" height="48" alt="logo"></a>
+        <ul>
+            <li><a href="./index.html">accueil</a></li>
+            <li><a href="#">prochaine mission</a></li>
+        </ul>
+    </nav>
+    <main>
+        <aside>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-globe"></i>
+                        <p>planètes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-rocket"></i>
+                        <p>véhicules</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-reddit-alien"></i>
+                        <p>personnes</p>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <section class="planet-section">
+            <div class="first-div-planets">
+                <h2>planètes</h2>
+                <div class="select-container">
+                    <select>
+                        <option>Par populations</option>
+                    </select>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="search-container">
+                    <input type="search" name="" placeholder="Faites votre recherche" id="">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="grid-container">
+                    <header>
+                        <p>Nom</p>
+                        <p>Terrain</p>
+                    </header>
+                    <ul class="grid" id="planet-list">
+                        <li>
+                            <p>Eriadu</p>
+                            <p>cityscape</p>
+                        </li>
+                    </ul>
+                </div>
+                <p><span id="total-planet">0</span> resultat(s)</p>
+            </div>
+            <div class="second-div-planets">
+                Séléctionner le contenu à afficher !
+            </div>
+        </section>
+    </main>
+</body>
+<script src="./script.js"></script>
+<script src="https://kit.fontawesome.com/b9de2c5951.js" crossorigin="anonymous"></script>
+
+</html>
