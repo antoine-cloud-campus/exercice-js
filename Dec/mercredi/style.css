@@ -86,6 +86,7 @@ aside {
 aside ul {
     display: grid;
     gap: 24px;
+    text-transform: uppercase;
 }
 
 aside ul li a {
@@ -129,10 +130,25 @@ section h2 {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.universe-div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
     background-image: url("./assets/space.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    opacity: 0.3;
+    z-index: -1;
 }
 
 .universe-div a {
@@ -147,8 +163,68 @@ section h2 {
 /* Second Div */
 
 .numbers-div {
-    background-image: url("./assets/space2.jpg");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 48px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.numbers-div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/space3.avif");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.numbers-div header h2 {
+    margin-bottom: 16px;
+}
+
+.numbers-div .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-left: 12px;
+}
+
+.numbers-div .card-container .card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.numbers-div .card-container .card i {
+    scale: 2;
+    color: #5d95b9;
+}
+
+.numbers-div .card-container .card:nth-child(2) i {
+    rotate: 90deg;
+}
+
+.numbers-div .card-container .card div {
+    font-size: 13px;
+
+}
+
+.numbers-div .card-container .card div h3 {
+    color: #5d95b9;
+}
+
+.numbers-div .card-container .card div p {}
+
+.numbers-div button {
+    margin-top: 36px;
+    align-self: flex-end;
 }
