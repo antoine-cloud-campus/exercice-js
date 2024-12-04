@@ -27,6 +27,7 @@ function getPlanet(planetUrl) {
         })
 }
 
+// Désolé ici c'est la merde je vais clean plus tard ptetre !
 function getPlanets() {
 
     fetch(baseUrl + 'planets')
