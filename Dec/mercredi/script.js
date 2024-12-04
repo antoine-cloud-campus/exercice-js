@@ -11,4 +11,3 @@ function getInfos(option) {
 getInfos('people');
 getInfos('planets');
 getInfos('vehicles');
-
