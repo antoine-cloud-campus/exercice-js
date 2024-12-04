@@ -1,9 +1,8 @@
 const currentPage = window.location.pathname;
 
 const baseUrl = 'https://swapi.dev/api/';
-const pathOptions = ['people', 'planets', 'films', 'species', 'vehicles', 'startships'];
 
-// Index HTML
+// Get Infos pour Index HTML
 
 function getInfos(option) {
     fetch(baseUrl + option)
@@ -13,7 +12,7 @@ function getInfos(option) {
         });
 }
 
-// Planets HTML
+// Get Planets pour planet.html
 
 function getPlanet(planetUrl) {
 
@@ -36,12 +35,15 @@ function getPlanets() {
             document.getElementById("total-planet").textContent = data.count;
             const totalPlanet = data.count;
             const totalPage = data.count / data.results.length;
+
             for (let i = 1; i <= totalPage; i++) {
                 fetch(baseUrl + 'planets/?page=' + i)
                     .then(response => response.json())
                     .then(data => {
                         data.results.forEach(planet => {
+
                             const li = document.createElement("li");
+
                             li.innerHTML = `<p>${planet.name}</p><p>${planet.terrain}</p>`;
 
                             li.addEventListener("click", () => {
@@ -59,7 +61,10 @@ function getPlanets() {
         })
 }
 
+// A l'initialisation de la page
+
 document.addEventListener('DOMContentLoaded', () => {
+
     if (currentPage.endsWith("index.html")) {
         getInfos('people');
         getInfos('planets');
