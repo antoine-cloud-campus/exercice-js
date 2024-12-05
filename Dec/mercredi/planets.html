@@ -49,8 +49,8 @@
             <div class="first-div-planets">
                 <h2>planètes</h2>
                 <div class="select-container">
-                    <select>
-                        <option value="all">Par populations</option>
+                    <select id="planet-filter">
+                        <option value="">Par populations</option>
                         <option value="1">0 à 100.000</option>
                         <option value="2">100.000 à 100.000.000</option>
                         <option value="3">+100.000.000</option>
@@ -67,6 +67,8 @@
                         <p>Terrain</p>
                     </header>
                     <ul class="grid" id="planet-list">
+                    </ul>
+                    <ul class="grid" id="planet-list-filtered">
                     </ul>
                 </div>
                 <p><span id="total-planet">0</span> resultat(s)</p>
