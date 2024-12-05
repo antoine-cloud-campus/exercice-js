@@ -2,14 +2,15 @@ const currentPage = window.location.pathname;
 
 const baseUrl = 'https://swapi.dev/api/';
 
-// Index HTML
-const infosRequired = ['people', 'vehicles', 'planets']
-
+// HTML ELEMENTS
 const defaultList = document.getElementById("planet-list");
 const filteredList = document.getElementById("planet-list-filtered");
 const selectElement = document.getElementById("planet-filter");
 const defaultDiv = document.querySelector('.default-planet');
 const selectedDiv = document.querySelector('.selected-planet');
+
+// Index HTML
+const infosRequired = ['people', 'vehicles', 'planets'];
 
 function getInfos(option) {
     fetch(baseUrl + option)
@@ -34,19 +35,25 @@ function getPlanet(planetUrl) {
         })
 }
 
-function updatePlanetFilteredList(data) {
+function updatePlanetFilteredList(data, isFiltered) {
 
     data.forEach(planet => {
         const li = document.createElement("li");
         li.innerHTML = `<p>${planet.name}</p><p>${planet.terrain}</p>`;
 
         li.addEventListener("click", () => {
-            defaultDiv.style.display = 'none';
             getPlanet(planet.url);
-            selectedDiv.style.display = 'flex';
+            isFiltered
+                ? (defaultDiv.style.display = 'flex', selectedDiv.style.display = 'none')
+                : (defaultDiv.style.display = 'none', selectedDiv.style.display = 'flex');
         });
 
-        filteredList.appendChild(li);
+        if (!isFiltered) {
+            defaultList.appendChild(li);
+        } else {
+            filteredList.appendChild(li);
+
+        }
     });
 }
 
@@ -56,26 +63,15 @@ async function createPlanetElement(data, filter) {
 
     if (filter == '1') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) <= 100000);
-        updatePlanetFilteredList(planetArray)
+        updatePlanetFilteredList(planetArray, true)
     } else if (filter == '2') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) > 100000 && parseInt(planet.population) <= 100000000);
-        updatePlanetFilteredList(planetArray)
+        updatePlanetFilteredList(planetArray, true)
     } else if (filter == '3') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) > 100000000);
-        updatePlanetFilteredList(planetArray)
+        updatePlanetFilteredList(planetArray, true)
     } else {
-        planetArray.forEach(planet => {
-            const li = document.createElement("li");
-            li.innerHTML = `<p>${planet.name}</p><p>${planet.terrain}</p>`;
-
-            li.addEventListener("click", () => {
-                defaultDiv.style.display = 'none';
-                getPlanet(planet.url);
-                selectedDiv.style.display = 'flex';
-            });
-
-            defaultList.appendChild(li);
-        });
+        updatePlanetFilteredList(planetArray, false)
     }
 }
 
