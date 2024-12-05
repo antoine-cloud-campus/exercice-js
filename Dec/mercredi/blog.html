@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <dialog>
+        <h3 id="modal-title">Créer un article</h3>
+        <form action="get">
+            <div>
+                <label>Titre</label>
+                <input id="article-title" type="text">
+            </div>
+            <div>
+                <label>Url image</label>
+                <input id="article-url" type="url">
+            </div>
+            <div>
+                <label>Contenu</label>
+                <textarea id="article-content" rows="3" class="textarea"></textarea>
+            </div>
+            <input id="submit-form-btn" type="submit" value="poster l'article">
+        </form>
+    </dialog>
+    <!-- NavBar -->
+    <nav>
+        <a href="../../index.html"><img src="./assets/logo.png" height="48" alt="logo"></a>
+        <ul>
+            <li><a href="./index.html">accueil</a></li>
+            <li><a href="#">prochaine mission</a></li>
+        </ul>
+    </nav>
+    <!-- Page -->
+    <main>
+        <!-- SideBar -->
+        <aside>
+            <ul>
+                <li>
+                    <a href="./planets.html">
+                        <i class="fa-solid fa-globe"></i>
+                        <p>planètes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./blog.html">
+                        <i class="fa-solid fa-rocket"></i>
+                        <p>véhicules</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-reddit-alien"></i>
+                        <p>personnes</p>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <!-- Main Content -->
+        <section class="blog-section">
+            <div class="blog-notification" id="blog-notification">
+                <p>L'article a été posté avec succès.</p><i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="card-container">
+
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>This is a test article</h3>
+                    <div class="img-container">
+                        <img src="./assets/space.jpg">
+                    </div>
+                    <div class="text-and-buttons">
+                        <p>This is an article to test the API...</p>
+                        <p class="blog-btn-container">
+                            <span class="modify-blog blog-btn">Modifier</span>
+                            <span class="delete-blog blog-btn">Supprimer</span>
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+<script src="./script.js"></script>
+<script src="https://kit.fontawesome.com/b9de2c5951.js" crossorigin="anonymous"></script>
+
+</html>
