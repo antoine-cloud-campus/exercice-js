@@ -105,21 +105,24 @@ async function getPlanets(url, filter) {
 }
 
 // Filters Planet
-selectElement.addEventListener('change', (e) => {
-    getPlanets(baseUrl + 'planets', e.target.value)
-    // Si Aucun filtre, affiche la liste par défaut
-    if (!e.target.value) {
-        filteredList.style.display = "none"
-        defaultList.style.display = "grid"
-    } else {
-        // Si nouveau filtre, reset la liste filtré puis l'affiche a la place de la liste par défaut
-        // reset total planets
-        totalPlanets = 0;
-        filteredList.innerHTML = '<ul class="grid" id="planet-list-filtered"></ul>';
-        filteredList.style.display = "grid"
-        defaultList.style.display = "none"
-    }
-});
+function addEventListenerPlanets() {
+    selectElement.addEventListener('change', (e) => {
+        getPlanets(baseUrl + 'planets', e.target.value)
+        // Si Aucun filtre, affiche la liste par défaut
+        if (!e.target.value) {
+            filteredList.style.display = "none"
+            defaultList.style.display = "grid"
+        } else {
+            // Si nouveau filtre, reset la liste filtré puis l'affiche a la place de la liste par défaut
+            // reset total planets
+            totalPlanets = 0;
+            filteredList.innerHTML = '<ul class="grid" id="planet-list-filtered"></ul>';
+            filteredList.style.display = "grid"
+            defaultList.style.display = "none"
+        }
+    });
+}
+
 
 // A l'initialisation de la page
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else if (currentPage.endsWith("planets.html")) {
         getPlanets(baseUrl + 'planets');
+        addEventListenerPlanets()
     }
 });
 
+// blogs.html
