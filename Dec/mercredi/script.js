@@ -2,13 +2,16 @@ const currentPage = window.location.pathname;
 
 const baseUrl = 'https://swapi.dev/api/';
 
+// Variables
+
+let totalPlanets = 0;
+
 // HTML ELEMENTS
 const defaultList = document.getElementById("planet-list");
 const filteredList = document.getElementById("planet-list-filtered");
 const selectElement = document.getElementById("planet-filter");
 const defaultDiv = document.querySelector('.default-planet');
 const selectedDiv = document.querySelector('.selected-planet');
-let totalPlanets = 0;
 
 // Index HTML
 const infosRequired = ['people', 'vehicles', 'planets'];
@@ -36,7 +39,7 @@ function getPlanet(planetUrl) {
         })
 }
 
-function updatePlanetFilteredList(data, isFiltered) {
+function updatePlanetList(data, isFiltered) {
 
     data.forEach(planet => {
         const li = document.createElement("li");
@@ -64,15 +67,15 @@ async function createPlanetElement(data, filter) {
     // Apply different filters if needed
     if (filter == '1') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) <= 100000);
-        updatePlanetFilteredList(planetArray, true)
+        updatePlanetList(planetArray, true)
     } else if (filter == '2') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) > 100000 && parseInt(planet.population) <= 100000000);
-        updatePlanetFilteredList(planetArray, true)
+        updatePlanetList(planetArray, true)
     } else if (filter == '3') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) > 100000000);
-        updatePlanetFilteredList(planetArray, true)
+        updatePlanetList(planetArray, true)
     } else {
-        updatePlanetFilteredList(planetArray, false)
+        updatePlanetList(planetArray, false)
     }
     // Update Resultat Total Planet
     totalPlanets += planetArray.length
