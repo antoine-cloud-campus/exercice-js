@@ -43,9 +43,8 @@ function updatePlanetFilteredList(data, isFiltered) {
 
         li.addEventListener("click", () => {
             getPlanet(planet.url);
-            isFiltered
-                ? (defaultDiv.style.display = 'flex', selectedDiv.style.display = 'none')
-                : (defaultDiv.style.display = 'none', selectedDiv.style.display = 'flex');
+            defaultDiv.style.display = 'none'
+            selectedDiv.style.display = 'flex'
         });
 
         if (!isFiltered) {
@@ -59,8 +58,10 @@ function updatePlanetFilteredList(data, isFiltered) {
 
 async function createPlanetElement(data, filter) {
 
+    // Store the planets array from the API
     let planetArray = data.results;
 
+    // Apply different filters if needed
     if (filter == '1') {
         planetArray = planetArray.filter((planet) => parseInt(planet.population) <= 100000);
         updatePlanetFilteredList(planetArray, true)
@@ -77,11 +78,15 @@ async function createPlanetElement(data, filter) {
 
 async function getPlanets(url, filter) {
     try {
+        // Fetch All Planets
         while (url) {
             const response = await fetch(url);
             const data = await response.json();
 
+            // Update the total planet count
             document.getElementById("total-planet").textContent = data.count;
+
+            // Create each planet element in the list
             createPlanetElement(data, filter);
             url = data.next;
         }
@@ -91,12 +96,13 @@ async function getPlanets(url, filter) {
 }
 
 // Filters Planet
-
 selectElement.addEventListener('change', (e) => {
+    // Si Aucun filtre, affiche la liste par défaut
     if (!e.target.value) {
         filteredList.style.display = "none"
         defaultList.style.display = "grid"
     } else {
+        // Si nouveau filtre, reset la liste filtré puis l'affiche a la place de la liste par défaut
         filteredList.innerHTML = '<ul class="grid" id="planet-list-filtered"></ul>';
         filteredList.style.display = "grid"
         defaultList.style.display = "none"
@@ -107,7 +113,6 @@ selectElement.addEventListener('change', (e) => {
 // A l'initialisation de la page
 
 document.addEventListener('DOMContentLoaded', () => {
-
     if (currentPage.endsWith("index.html")) {
         infosRequired.forEach(info => {
             getInfos(info)
