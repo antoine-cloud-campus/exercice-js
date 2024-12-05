@@ -10,8 +10,10 @@ let totalPlanets = 0;
 const defaultList = document.getElementById("planet-list");
 const filteredList = document.getElementById("planet-list-filtered");
 const selectElement = document.getElementById("planet-filter");
+
 const defaultDiv = document.querySelector('.default-planet');
 const selectedDiv = document.querySelector('.selected-planet');
+
 
 // Index HTML
 const infosRequired = ['people', 'vehicles', 'planets'];
@@ -31,6 +33,7 @@ function getPlanet(planetUrl) {
     fetch(planetUrl)
         .then(response => response.json())
         .then(data => {
+            document.getElementById("planet-name").textContent = data.name;
             document.getElementById("planet-population").textContent = data.population;
             document.getElementById("planet-diameter").textContent = data.diameter;
             document.getElementById("planet-climate").textContent = data.climate;
