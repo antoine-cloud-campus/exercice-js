@@ -8,6 +8,7 @@ const filteredList = document.getElementById("planet-list-filtered");
 const selectElement = document.getElementById("planet-filter");
 const defaultDiv = document.querySelector('.default-planet');
 const selectedDiv = document.querySelector('.selected-planet');
+let totalPlanets = 0;
 
 // Index HTML
 const infosRequired = ['people', 'vehicles', 'planets'];
@@ -51,7 +52,6 @@ function updatePlanetFilteredList(data, isFiltered) {
             defaultList.appendChild(li);
         } else {
             filteredList.appendChild(li);
-
         }
     });
 }
@@ -74,6 +74,9 @@ async function createPlanetElement(data, filter) {
     } else {
         updatePlanetFilteredList(planetArray, false)
     }
+    // Update Resultat Total Planet
+    totalPlanets += planetArray.length
+    document.getElementById("total-planet").textContent = totalPlanets;
 }
 
 async function getPlanets(url, filter) {
@@ -97,21 +100,22 @@ async function getPlanets(url, filter) {
 
 // Filters Planet
 selectElement.addEventListener('change', (e) => {
+    getPlanets(baseUrl + 'planets', e.target.value)
     // Si Aucun filtre, affiche la liste par défaut
     if (!e.target.value) {
         filteredList.style.display = "none"
         defaultList.style.display = "grid"
     } else {
         // Si nouveau filtre, reset la liste filtré puis l'affiche a la place de la liste par défaut
+        // reset total planets
+        totalPlanets = 0;
         filteredList.innerHTML = '<ul class="grid" id="planet-list-filtered"></ul>';
         filteredList.style.display = "grid"
         defaultList.style.display = "none"
     }
-    getPlanets(baseUrl + 'planets', e.target.value)
 });
 
 // A l'initialisation de la page
-
 document.addEventListener('DOMContentLoaded', () => {
     if (currentPage.endsWith("index.html")) {
         infosRequired.forEach(info => {
